@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Padoca_Senac.Models;
+namespace backPadaria.Models;
 
 internal class Cliente
 {
@@ -32,5 +32,13 @@ internal class Cliente
         this._telefone = telefone;
         this._endereco = endereco;
         this._pontos = pontos;
+    }
+
+    public void AdicionarPontos(int pontos)
+    {
+        if (pontos > 0)
+        {
+            this._pontos += pontos;
+        }
     }
 }

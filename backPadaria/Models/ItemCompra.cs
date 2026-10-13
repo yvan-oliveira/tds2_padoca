@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Padoca_Senac.Models;
+namespace backPadaria.Models;
 
 internal class ItemCompra
 {
