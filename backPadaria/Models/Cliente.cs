@@ -17,6 +17,9 @@ internal class Cliente
 
     public Cliente(string nome, string cpf, string telefone, string endereco, int pontos)
     {
+        
+        // if (nome == "") throw new Exception("O nome do cliente não pode ser vazio");
+
         _nome = nome;
         _cpf = cpf;
         _telefone = telefone;
