@@ -6,7 +6,7 @@ namespace backPadaria
     {
         static void Main(string[] args)
         {
-            //Banco.Banco.connectAndTest();
+            // Banco.Banco.connectAndTest();
 
             Cliente cliente1 = new Cliente(
                 nome: " ",
