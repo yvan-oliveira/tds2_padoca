@@ -27,7 +27,7 @@ internal class Cliente
     public Cliente(string nome, string cpf, string telefone, string endereco, int pontos)
     {
 
-        // if (nome == "") throw new Exception("O nome do cliente não pode ser vazio");
+        if (nome == "") throw new Exception("O nome do cliente não pode ser vazio");
         Nome = nome;
         Cpf = cpf;
         Telefone = telefone;
@@ -38,6 +38,7 @@ internal class Cliente
     public Cliente(int id, string nome, string cpf, string telefone, string endereco, int pontos)
     {
         this.Id = id;
+        if (nome == "") throw new Exception("O nome do cliente não pode ser vazio");
         this.Nome = nome;
         this.Cpf = cpf;
         this.Telefone = telefone;
