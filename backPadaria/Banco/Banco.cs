@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace backPadaria.Banco
+namespace backPadaria.banco
 {
     public static class Banco
     {

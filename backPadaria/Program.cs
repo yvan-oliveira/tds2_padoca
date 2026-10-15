@@ -9,12 +9,14 @@ namespace backPadaria
             // Banco.Banco.connectAndTest();
 
             Cliente cliente1 = new Cliente(
-                nome: " ",
-                cpf: "11122233345",
+                nome: "Raphael Oliveira2",
+                cpf: "12122233345",
                 telefone: "111111111",
-                endereco: "Rua tirusbango tirusbagos",
-                pontos: 123
+                endereco: "Rua do SENAC",
+                pontos: 10
             );
+
+            Cliente.Inserir(cliente1);
         }
     }
 }
