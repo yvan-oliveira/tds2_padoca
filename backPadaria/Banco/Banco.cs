@@ -26,6 +26,8 @@ namespace backPadaria.Banco
                         Console.WriteLine($"Versão do MariaDB {version}");
                     }
 
+                    //teste
+
                 }
                 catch (MySqlException ex)
                 {
