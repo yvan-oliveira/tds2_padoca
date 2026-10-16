@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -123,10 +124,12 @@ namespace backPadaria.banco
             // seria fechada antes de retornar os dados, e o programa quebraria ao tentar ler a tabela.
             var conexao = new MySqlConnection(stringDeConexao);
 
-            command.Connection = conexao;
 
             try
             {
+                conexao.Open();
+
+                command.Connection = conexao;
                 // Executa a consulta e retorna o "leitor" de dados.
                 // O CommandBehavior.CloseConnection e a peça-chave deste método: ele avisa ao leitor
                 // que assim que ele (o leitor) for fechado ou descartado la na tela/classe que o chamou,

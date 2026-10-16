@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using backPadaria.banco;
+using System.Runtime.CompilerServices;
 
 namespace backPadaria.Models;
 
@@ -17,7 +18,7 @@ internal class Cliente
     private string _endereco;
     private int _pontos;
 
-    public int Id { get => Id; set => Id = value; }
+    public int Id { get => _id; set => _id = value; }
     public string Nome { get => _nome; set => _nome = value; }
     public string Cpf { get => _cpf; set => _cpf = value; }
     public string Telefone { get => _telefone; set => _telefone = value; }
@@ -50,6 +51,7 @@ internal class Cliente
     public void AdicionarPontos(int pontos)
     {
         if (pontos > 0)
+
         {
             this.Pontos += pontos;
         }
@@ -84,4 +86,65 @@ internal class Cliente
             return Banco.ExecutarComando(cmd);
         }
     }
+
+    public static int Deletar(Cliente cliente)
+    {
+        string sql = "DELETE FROM `Cliente` WHERE `Id` = @id";
+
+        using (var cmd = new MySqlCommand(sql))
+        {
+            cmd.Parameters.AddWithValue("@id", cliente.Id);
+
+            return Banco.ExecutarComando(cmd);
+        }
+    }
+
+    public static List<Cliente> ListarTodos()
+    {
+        string sql = "SELECT * FROM `Cliente`";
+
+        List<Cliente> listaClientes = new();
+
+        using (var cmd = new MySqlCommand(sql))
+        {
+            // Executa a leitura. 0 bloco 'using' aqui é FUNDAMENTAL para garantir que o
+            // reader seja fechado no final, o que por sua vez fecha a conexao com o banco.
+            using (MySqlDataReader reader = Banco.ExecutarComRetornoDeDados(cmd))
+            {
+                // O while vai rodar uma vez para CADA linha que existir na tabela Cliente
+                while (reader.Read())
+                {
+                    int id = reader.GetInt32("Id");
+                    string nome = validarCampo(reader["Nome"]);
+                    string cpf = validarCampo(reader["CPF"]);
+                    string telefone = validarCampo(reader["Telefone"]);
+                    string endereco = validarCampo(reader["Endereco"]);
+                    int pontos = reader.GetInt32("Pontos");
+
+                    // Cria o objeto Cliente com os dados extraídos
+                    Cliente cliente = new Cliente(id, nome, cpf, telefone, endereco, pontos);
+
+                    // Adiciona este cliente à nossa lista
+                    listaClientes.Add(cliente);
+                }
+            }
+
+            // Retorna a lista completa (se a tabela estiver vazia, retorna uma lista com 0 itens)
+            return listaClientes;
+        }
+    }
+
+    private static string validarCampo(object campo)
+    {
+        if (campo == DBNull.Value || campo == null)
+        {
+            return "";
+        }
+        else
+        {
+            return campo.ToString();
+        }
+    }
+    
 }
+

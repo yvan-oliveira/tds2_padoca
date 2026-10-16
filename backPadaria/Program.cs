@@ -1,4 +1,5 @@
 ﻿using backPadaria.Models;
+using System.Data;
 
 namespace backPadaria
 {
@@ -6,7 +7,7 @@ namespace backPadaria
     {
         static void Main(string[] args)
         {
-            // Banco.Banco.connectAndTest();
+            /* Banco.Banco.connectAndTest();
 
             Console.WriteLine("Digite o nome do cliente: ");
             string nomeCliente = Console.ReadLine()!;
@@ -31,8 +32,20 @@ namespace backPadaria
                 endereco: enderecoCliente,
                 pontos: qtdPontos
             );
-
             Cliente.Inserir(cliente1);
+            */
+
+            List<Cliente> clientes = Cliente.ListarTodos();
+
+            foreach (Cliente cliente in clientes)
+            {
+                Console.WriteLine($"ID {cliente.Id}");
+                Console.WriteLine($"Nome {cliente.Nome}");
+                Console.WriteLine($"CPF {cliente.Cpf}");
+                Console.WriteLine($"Telefone {cliente.Telefone}");
+                Console.WriteLine($"Endereço {cliente.Endereco}\n");
+            }
+
         }
     }
 }
