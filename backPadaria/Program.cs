@@ -9,19 +9,19 @@ namespace backPadaria
             // Banco.Banco.connectAndTest();
 
             Console.WriteLine("Digite o nome do cliente: ");
-            string nomeCliente = Console.ReadLine();
+            string nomeCliente = Console.ReadLine()!;
 
             Console.WriteLine("Digite o endereço do cliente: ");
-            string enderecoCliente = Console.ReadLine();
+            string enderecoCliente = Console.ReadLine()!;
 
             Console.WriteLine("Digite o cpf do cliente: ");
-            string cpfCliente = Console.ReadLine();
+            string cpfCliente = Console.ReadLine()!;
 
             Console.WriteLine("Digite o telefone do cliente: ");
-            string telefoneCliente = Console.ReadLine();
+            string telefoneCliente = Console.ReadLine()!;
 
             Console.WriteLine("Digite a quantidade de pontos: ");
-            int qtdPontos = int.Parse(Console.ReadLine());
+            int qtdPontos = int.Parse(Console.ReadLine()!);
 
 
             Cliente cliente1 = new Cliente(
