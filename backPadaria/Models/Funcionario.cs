@@ -107,7 +107,7 @@ internal class  Funcionario
 
             while (reader.Read())
             {
-                int idBanco = reader.GetInt32("Id");
+                int funcionarioId = reader.GetInt32("Id");
                 string nome = ValidarCampo(reader["Nome"]);
                 string cpf = ValidarCampo(reader["CPF"]);
                 string cargo = ValidarCampo(reader["Cargo"]);

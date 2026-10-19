@@ -148,7 +148,7 @@ internal class Cliente
 
             while (reader.Read())
             {
-                int idBanco = reader.GetInt32("Id");
+                int clienteId = reader.GetInt32("Id");
                 string nome = ValidarCampo(reader["Nome"]);
                 string cpf = ValidarCampo(reader["CPF"]);
                 string telefone = ValidarCampo(reader["Telefone"]);
