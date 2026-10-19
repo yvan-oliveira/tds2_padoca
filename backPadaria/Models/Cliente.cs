@@ -134,6 +134,35 @@ internal class Cliente
         }
     }
 
+    public static Cliente? listarPorId(int id)
+    {
+        string sql = "SELECT * FROM `Cliente` WHERE `id` = @Id";
+
+        using (var cmd = new MySqlCommand(sql))
+        {
+            cmd.Parameters.AddWithValue("@Id", id);
+
+            MySqlDataReader reader = Banco.ExecutarComRetornoDeDados(cmd);
+
+            Cliente? cliente = null;
+
+            while (reader.Read())
+            {
+                int idBanco = reader.GetInt32("Id");
+                string nome = validarCampo(reader["Nome"]);
+                string cpf = validarCampo(reader["CPF"]);
+                string telefone = validarCampo(reader["Telefone"]);
+                string endereco = validarCampo(reader["Endereco"]);
+                int pontos = reader.GetInt32("Pontos");
+
+                // Cria o objeto Cliente com os dados extraídos
+                cliente = new Cliente(id, nome, cpf, telefone, endereco, pontos);
+            }
+
+            return cliente;
+        }
+    }
+
     private static string validarCampo(object campo)
     {
         if (campo == DBNull.Value || campo == null)

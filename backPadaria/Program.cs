@@ -35,17 +35,31 @@ namespace backPadaria
             Cliente.Inserir(cliente1);
             */
 
-            List<Cliente> clientes = Cliente.ListarTodos();
+            //List<Cliente> clientes = Cliente.ListarTodos();
 
-            foreach (Cliente cliente in clientes)
+            //foreach (Cliente cliente in clientes)
+            //{
+            //    Console.WriteLine($"ID {cliente.Id}");
+            //    Console.WriteLine($"Nome {cliente.Nome}");
+            //    Console.WriteLine($"CPF {cliente.Cpf}");
+            //    Console.WriteLine($"Telefone {cliente.Telefone}");
+            //    Console.WriteLine($"Endereço {cliente.Endereco}\n");
+            //}
+
+            Cliente? cli01 = Cliente.listarPorId(2);
+            
+            if (cli01 != null)
             {
-                Console.WriteLine($"ID {cliente.Id}");
-                Console.WriteLine($"Nome {cliente.Nome}");
-                Console.WriteLine($"CPF {cliente.Cpf}");
-                Console.WriteLine($"Telefone {cliente.Telefone}");
-                Console.WriteLine($"Endereço {cliente.Endereco}\n");
+                Console.WriteLine($"ID {cli01.Id}");
+                Console.WriteLine($"Nome {cli01.Nome}");
+                Console.WriteLine($"CPF {cli01.Cpf}");
+                Console.WriteLine($"Telefone {cli01.Telefone}");
+                Console.WriteLine($"Endereço {cli01.Endereco}\n");
             }
-
+            else
+            {
+                Console.WriteLine("O cliente não foi encontrado!!");
+            }
         }
     }
 }
