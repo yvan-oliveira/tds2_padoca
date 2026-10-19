@@ -1,5 +1,6 @@
 ﻿using backPadaria.Models;
 using System.Data;
+using System.Diagnostics.Contracts;
 
 namespace backPadaria
 {
@@ -46,20 +47,97 @@ namespace backPadaria
             //    Console.WriteLine($"Endereço {cliente.Endereco}\n");
             //}
 
-            Cliente? cli01 = Cliente.listarPorId(2);
+
+            //    Cliente? meuCliente = Cliente.ListarPorId(1);
+
+            //    if (meuCliente != null)
+            //    {
+            //        meuCliente.Endereco = "Rua Barão de Alagoas, 171";
+            //        meuCliente.Telefone = "1199995-4334";
+
+            //        int resultado = Cliente.AtualizarCliente(meuCliente);
+
+            //        if (resultado > 0)
+            //        {
+            //            Console.WriteLine("Cliente atualizado com sucesso!");
+            //        }
+            //        else
+            //        {
+            //            Console.WriteLine("Falha ao atualizar o cliente.");
+            //        }
+            //    }
+
+            //        if (meuCliente != null)
+            //        {
+            //            Console.WriteLine($"ID {meuCliente.Id}");
+            //            Console.WriteLine($"Nome {meuCliente.Nome}");
+            //            Console.WriteLine($"CPF {meuCliente.Cpf}");
+            //            Console.WriteLine($"Telefone {meuCliente.Telefone}");
+            //            Console.WriteLine($"Endereço {meuCliente.Endereco}\n");
+            //        }
+            //        else
+            //        {
+            //            Console.WriteLine("O cliente não foi encontrado!!");
+            //        }
+            //
+
             
-            if (cli01 != null)
+            Funcionario funcionario1 = new Funcionario(
+                nome: "Pedro",
+                cpf: "123.456.789-01",
+                cargo: "Empacotador"
+            );
+
+            // Funcionario.Inserir(funcionario1);
+
+            /*var resultado = Funcionario.ListarPorId(5);
+
+            Funcionario.Deletar(resultado);*/
+
+            List<Funcionario> listaDeFuncionarios = new();
+            listaDeFuncionarios = Funcionario.ListarTodos();
+
+            foreach (Funcionario funcionario in listaDeFuncionarios)
             {
-                Console.WriteLine($"ID {cli01.Id}");
-                Console.WriteLine($"Nome {cli01.Nome}");
-                Console.WriteLine($"CPF {cli01.Cpf}");
-                Console.WriteLine($"Telefone {cli01.Telefone}");
-                Console.WriteLine($"Endereço {cli01.Endereco}\n");
+                Console.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+                Console.WriteLine($"ID {funcionario.Id}");
+                Console.WriteLine($"Nome {funcionario.Nome}");
+                Console.WriteLine($"CPF {funcionario.Cpf}");
+                Console.WriteLine($"Cargo {funcionario.Cargo}\n");
+                Console.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+            }
+
+            Funcionario? meuFuncionario = Funcionario.ListarPorId(3);
+
+            if (meuFuncionario != null)
+            {
+                meuFuncionario.Nome = "Apenas Pedro";
+                meuFuncionario.Cargo = "Emapacotador";
+
+                int resultado = Funcionario.AtualizarFuncionario(meuFuncionario);
+
+                if (resultado > 0)
+                {
+                    Console.WriteLine("Cliente atualizado com sucesso!");
+                }
+                else
+                {
+                    Console.WriteLine("Falha ao atualizar o cliente.");
+                }
+            }
+
+            if (meuFuncionario != null)
+            {
+                Console.WriteLine($"ID {meuFuncionario.Id}");
+                Console.WriteLine($"Nome {meuFuncionario.Nome}");
+                Console.WriteLine($"CPF {meuFuncionario.Cpf}");
+                Console.WriteLine($"Cargo {meuFuncionario.Cargo}");
             }
             else
             {
-                Console.WriteLine("O cliente não foi encontrado!!");
+                Console.WriteLine("O funcionario não foi encontrado!!");
             }
         }
     }
 }
+

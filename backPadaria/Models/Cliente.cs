@@ -115,10 +115,10 @@ internal class Cliente
                 while (reader.Read())
                 {
                     int id = reader.GetInt32("Id");
-                    string nome = validarCampo(reader["Nome"]);
-                    string cpf = validarCampo(reader["CPF"]);
-                    string telefone = validarCampo(reader["Telefone"]);
-                    string endereco = validarCampo(reader["Endereco"]);
+                    string nome = ValidarCampo(reader["Nome"]);
+                    string cpf = ValidarCampo(reader["CPF"]);
+                    string telefone = ValidarCampo(reader["Telefone"]);
+                    string endereco = ValidarCampo(reader["Endereco"]);
                     int pontos = reader.GetInt32("Pontos");
 
                     // Cria o objeto Cliente com os dados extraídos
@@ -134,7 +134,7 @@ internal class Cliente
         }
     }
 
-    public static Cliente? listarPorId(int id)
+    public static Cliente? ListarPorId(int id)
     {
         string sql = "SELECT * FROM `Cliente` WHERE `id` = @Id";
 
@@ -149,10 +149,10 @@ internal class Cliente
             while (reader.Read())
             {
                 int idBanco = reader.GetInt32("Id");
-                string nome = validarCampo(reader["Nome"]);
-                string cpf = validarCampo(reader["CPF"]);
-                string telefone = validarCampo(reader["Telefone"]);
-                string endereco = validarCampo(reader["Endereco"]);
+                string nome = ValidarCampo(reader["Nome"]);
+                string cpf = ValidarCampo(reader["CPF"]);
+                string telefone = ValidarCampo(reader["Telefone"]);
+                string endereco = ValidarCampo(reader["Endereco"]);
                 int pontos = reader.GetInt32("Pontos");
 
                 // Cria o objeto Cliente com os dados extraídos
@@ -163,7 +163,29 @@ internal class Cliente
         }
     }
 
-    private static string validarCampo(object campo)
+    public static int AtualizarCliente(Cliente cliente)
+    {
+        string sql = "UPDATE `Cliente` SET `Nome` = @Nome, `Cpf` = @CPF, `Telefone` = @Telefone, `Endereco` = @Endereco, `Pontos` = @Pontos WHERE `Id` = @id";
+
+        using (var cmd = new MySqlCommand(sql))
+        {
+            // Vinculação de Parâmetros: Protege contra SQL Injection e organiza os dados
+            cmd.Parameters.AddWithValue("@Nome", cliente.Nome);
+            cmd.Parameters.AddWithValue("@CPF", cliente.Cpf);
+            cmd.Parameters.AddWithValue("@Telefone", cliente.Telefone);
+            cmd.Parameters.AddWithValue("@Endereco", cliente.Endereco);
+            cmd.Parameters.AddWithValue("@Pontos", cliente.Pontos);
+
+            // A chave de busca: Quem será atualizado?
+            cmd.Parameters.AddWithValue("@id", cliente.Id);
+
+            // Execução: O UPDATE também é uma instrução de ação (como INSERT e DELETE).
+            // Ele vai retornar 1 (se encontrou  o ID e atualizou com sucesso) ou 0 (se o ID não existia).
+            return Banco.ExecutarComando(cmd);
+        }
+    }
+
+    private static string ValidarCampo(object campo)
     {
         if (campo == DBNull.Value || campo == null)
         {
@@ -174,6 +196,5 @@ internal class Cliente
             return campo.ToString();
         }
     }
-    
 }
 
