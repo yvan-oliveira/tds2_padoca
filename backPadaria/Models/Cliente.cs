@@ -51,7 +51,6 @@ internal class Cliente
     public void AdicionarPontos(int pontos)
     {
         if (pontos > 0)
-
         {
             this.Pontos += pontos;
         }

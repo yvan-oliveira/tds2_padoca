@@ -1,4 +1,5 @@
 ﻿using backPadaria.Models;
+using backPadaria.Services;
 using System.Data;
 using System.Diagnostics.Contracts;
 
@@ -82,7 +83,7 @@ namespace backPadaria
             //
 
             
-            Funcionario funcionario1 = new Funcionario(
+            /*Funcionario funcionario1 = new Funcionario(
                 nome: "Pedro",
                 cpf: "123.456.789-01",
                 cargo: "Empacotador"
@@ -92,7 +93,7 @@ namespace backPadaria
 
             /*var resultado = Funcionario.ListarPorId(5);
 
-            Funcionario.Deletar(resultado);*/
+            Funcionario.Deletar(resultado);
 
             List<Funcionario> listaDeFuncionarios = new();
             listaDeFuncionarios = Funcionario.ListarTodos();
@@ -135,8 +136,10 @@ namespace backPadaria
             }
             else
             {
-                Console.WriteLine("O funcionario não foi encontrado!!");
-            }
+                Console.WriteLine("O funcionario não foi encontrado!!")
+            };*/
+
+            ClienteService.MenuCliente();
         }
     }
 }
