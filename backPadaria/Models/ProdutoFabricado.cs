@@ -11,10 +11,18 @@ internal class ProdutoFabricado : Produto
     private int _produtoId;
     private string _descricaoProducao;
 
-    public ProdutoFabricado(int id, string nome, string preco, string categoria, bool fabricado, int marcaId, string descricao) : base(id, nome, preco, categoria, fabricado, marcaId)
+    public ProdutoFabricado(
+        string nome,
+        decimal preco,
+        string categoria, 
+        bool fabricado, 
+        int marcaId,
+        int produtoId,
+        string descricaoProducao)
+        : base(nome, preco, categoria, true, marcaId)
     {
-        this._produtoId = id;
-        this._descricaoProducao = descricao;
+        this._produtoId = produtoId;
+        this._descricaoProducao = descricaoProducao;
 
     }
 }
