@@ -23,6 +23,20 @@ internal class ProdutoFabricado : Produto
     {
         this._produtoId = produtoId;
         this._descricaoProducao = descricaoProducao;
+    }
 
+    public ProdutoFabricado(
+        int id,
+        string nome,
+        decimal preco,
+        string categoria, 
+        bool fabricado, 
+        int marcaId,
+        int produtoId,
+        string descricaoProducao)
+        : base(id, nome, preco, categoria, true, marcaId)
+    {
+        this._produtoId = produtoId;
+        this._descricaoProducao = descricaoProducao;
     }
 }

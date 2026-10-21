@@ -126,7 +126,7 @@ internal class Produto
         }
     }
 
-    public static int AtualizarMarca(Produto produto)
+    public static int AtualizarProduto(Produto produto)
     {
         string sql = "UPDATE `Produto` SET `Nome` = @Nome, `Preco` = @Preco, `Categoria` = @Categoria, `Fabricado` = @Fabricado, `MarcaId` = @Marca WHERE `Id` = @id";
 
