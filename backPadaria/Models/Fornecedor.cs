@@ -28,29 +28,18 @@ internal class Fornecedor
     public string CNPJ { get => _cnpj; set => _cnpj = value; }
 
     public Fornecedor(int id, string nome, string cnpj, string telefone)
-
     {
-
         this._id = id;
-
         this._nome = nome;
-
         this._cnpj = cnpj;
-
         this._telefone = telefone;
-
     }
 
     public Fornecedor(string nome, string cnpj, string telefone)
-
     {
-
         this._nome = nome;
-
         this._cnpj = cnpj;
-
-        this.Telefone = telefone;
-
+        this._telefone = telefone;
     }
 
     public int Inserir(Fornecedor fornecedor)

@@ -1,4 +1,5 @@
 ﻿using backPadaria.Models;
+using backPadaria.Service;
 using backPadaria.Services;
 using System.Data;
 using System.Diagnostics.Contracts;
@@ -139,7 +140,8 @@ namespace backPadaria
                 Console.WriteLine("O funcionario não foi encontrado!!")
             };*/
 
-            ClienteService.MenuCliente();
+            //ClienteService.MenuCliente();
+            FuncionarioService.MenuFuncionario();
         }
     }
 }
