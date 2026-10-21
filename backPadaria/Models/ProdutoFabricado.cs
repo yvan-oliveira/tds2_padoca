@@ -8,4 +8,5 @@ namespace backPadaria.Models;
 
 internal class ProdutoFabricado
 {
+
 }
