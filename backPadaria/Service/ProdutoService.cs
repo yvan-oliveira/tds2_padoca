@@ -119,7 +119,7 @@ namespace backPadaria.Service
 
         // ===== CADASTRAR =====
 
-        private static void CadastrarMarca()
+        private static void CadastrarProduto()
         {
             Console.WriteLine("-=-=-=-=-=-=- CADASTRAR PRODUTO -=-=-=-=-=-=-\n");
 
