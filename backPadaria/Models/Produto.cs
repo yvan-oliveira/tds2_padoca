@@ -15,7 +15,7 @@ internal class Produto
     private decimal _preco;
     private string _categoria;
     private bool _fabricado;
-    private int _marcaId;
+    private int _marcaId;   
 
     public int Id { get => _id; set => _id = value; }
     public string Nome { get => _nome; set => _nome = value; }
