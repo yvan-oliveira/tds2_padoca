@@ -42,7 +42,7 @@ internal class Fornecedor
         this._telefone = telefone;
     }
 
-    public int Inserir(Fornecedor fornecedor)
+    public static int Inserir(Fornecedor fornecedor)
 
     {
 
@@ -92,7 +92,7 @@ internal class Fornecedor
 
     }
 
-    public static List<Fornecedor> ListarFornecedores()
+    public static List<Fornecedor> ListarTodos()
 
     {
 
@@ -188,10 +188,8 @@ internal class Fornecedor
 
     }
 
-    public static int AtualizarMarca(Fornecedor fornecedor)
-
+    public static int AtualizarFornecedor(Fornecedor fornecedor)
     {
-
         string sql = "UPDATE `Fornecedor` SET `Nome` = @Nome, `CNPJ` = @CNPJ, `Telefone` = @Telefone WHERE `Id` = @Id";
 
         using (var cmd = new MySqlCommand(sql))

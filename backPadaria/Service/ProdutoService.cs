@@ -39,11 +39,11 @@ namespace backPadaria.Service
                         case "2":
                             ListarProdutos(); break;
                         case "3":
-                            ListarProdutoPorId(); break;
+                            BuscarProdutoPorId(); break;
                         case "4":
                             AtualizarProduto(); break;
                         case "5":
-                            DeletarProduto(); break;
+                            ExcluirProduto(); break;
                         case "0":
                             sair = true;
                             Console.WriteLine("Encerrando o programa..."); break;
@@ -164,7 +164,7 @@ namespace backPadaria.Service
             {
                 foreach (Produto produto in lista)
                 {
-                    ExibirCliente(produto);
+                    ExibirProduto(produto);
                     Console.WriteLine();
                 }
             }
@@ -181,7 +181,7 @@ namespace backPadaria.Service
             Produto? produto = BuscarPorIdValidado();
 
             if (produto != null)
-                ExibirCliente(produto);
+                ExibirProduto(produto);
 
             VoltarParaMenu();
         }
@@ -264,6 +264,42 @@ namespace backPadaria.Service
                         Thread.Sleep(1500);
                         break;
                 }
+            }
+
+            VoltarParaMenu();
+        }
+
+        // ===== EXCLUIR =====
+
+        private static void ExcluirProduto()
+        {
+            Console.WriteLine("-=-=-=-=-=-=- EXCLUIR PRODUTO -=-=-=-=-=-=-\n");
+
+            Produto? produto = BuscarPorIdValidado();
+
+            if (produto == null)
+            {
+                VoltarParaMenu();
+                return;
+            }
+
+            ExibirProduto(produto);
+
+            Console.Write("\nDeseja realmente excluir este produto? (S/N): ");
+            string confirmacao = (Console.ReadLine() ?? "").Trim();
+
+            if (confirmacao.Equals("S", StringComparison.OrdinalIgnoreCase))
+            {
+                int resultado = Produto.Deletar(produto);
+
+                if (resultado > 0)
+                    Console.WriteLine("\nproduto excluído com sucesso!");
+                else
+                    Console.WriteLine("\nNão foi possível excluir o produto.");
+            }
+            else
+            {
+                Console.WriteLine("\nExclusão cancelada.");
             }
 
             VoltarParaMenu();
