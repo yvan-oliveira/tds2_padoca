@@ -199,7 +199,7 @@ internal class FornecedorService
 
     private static void AtualizarFornecedor()
     {
-        Console.WriteLine("-=-=-=-=-=-=- ATUALIZAR Fornecedor -=-=-=-=-=-=-\n");
+        Console.WriteLine("-=-=-=-=-=-=- ATUALIZAR FORNECEDOR -=-=-=-=-=-=-\n");
 
         Fornecedor? Fornecedor = BuscarPorIdValidado();
 
