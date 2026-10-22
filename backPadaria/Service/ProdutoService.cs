@@ -135,7 +135,12 @@ namespace backPadaria.Service
 
             int idMarca = LerInteiro("Digite o ID da Marca do Produto: ", 1);  
 
-            Produto novoProduto = new Produto(nome: nomeProduto, preco: precoProduto, categoria: categoriaProduto, fabricado: fabricadoProduto, marcaId: idMarca
+            Produto novoProduto = new Produto(
+                nome: nomeProduto,
+                preco: precoProduto,
+                categoria: categoriaProduto,
+                fabricado: fabricadoProduto,
+                marcaId: idMarca
             );
 
             int resultado = Produto.Inserir(novoProduto);
@@ -215,6 +220,7 @@ namespace backPadaria.Service
                 Console.WriteLine("3 - Categoria do Produto");
                 Console.WriteLine("4 - Status do Produto Fabricado");
                 Console.WriteLine("5 - Marca do Produto");
+                Console.WriteLine("6 - Salvar alterações");
                 Console.WriteLine("0 - Cancelar");
                 Console.Write("Escolha uma opção: ");
 
@@ -238,12 +244,16 @@ namespace backPadaria.Service
                         break;
 
                     case "4":
-                        produto.Categoria = LerTexto("Digite a nova categoria: ");
+                        Console.WriteLine("Digite o novo status Fabricado: ");
                         produto.Fabricado = bool.Parse(Console.ReadLine()!);
-
                         break;
 
                     case "5":
+                        Console.WriteLine("Digite a nova marca: ");
+                        produto.MarcaId = int.Parse(Console.ReadLine()!);
+                        break;
+
+                    case "6":
                         int resultado = Produto.AtualizarProduto(produto);
 
                         if (resultado > 0)
