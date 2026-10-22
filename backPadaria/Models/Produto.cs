@@ -15,7 +15,8 @@ internal class Produto
     private decimal _preco;
     private string _categoria;
     private bool _fabricado;
-    private int _marcaId;   
+    private int _marcaId;
+    private string _nomeMarca;
 
     public int Id { get => _id; set => _id = value; }
     public string Nome { get => _nome; set => _nome = value; }
@@ -23,6 +24,7 @@ internal class Produto
     public string Categoria { get => _categoria; set => _categoria = value; }
     public bool Fabricado { get => _fabricado; set => _fabricado = value; }
     public int MarcaId { get => _marcaId; set => _marcaId = value; }
+    public string NomeMarca { get => _nomeMarca; }
 
     public Produto(string nome, decimal preco, string categoria, bool fabricado, int marcaId)
     {
@@ -31,6 +33,7 @@ internal class Produto
         this._categoria = categoria;
         this._fabricado = fabricado;
         this._marcaId = marcaId;
+        this._nomeMarca = NomeMarca;
     }
 
     public Produto(int id, string nome, decimal preco, string categoria, bool fabricado, int marcaId)
@@ -41,6 +44,7 @@ internal class Produto
         this._categoria = categoria;
         this._fabricado = fabricado;
         this._marcaId = marcaId;
+        this._nomeMarca = NomeMarca;
     }
 
     public static int Inserir(Produto produto)
@@ -87,6 +91,36 @@ internal class Produto
                     bool fabricado = reader.GetBoolean("Fabricado");
                     int marcaId = reader.GetInt32("MarcaId");
 
+                    Produto produto = new Produto(nome, preco, categoria, fabricado, marcaId);
+
+                    produtos.Add(produto);
+                }
+            }
+
+            return produtos;
+        }
+    }
+
+    public static List<Produto> ListarTodosFabricados()
+    {
+        string sql = "SELECT p.Id, p.Nome, p.Preco, p.Categoria, p.Fabricado,m.Id as MarcaId, m.Nome AS marcaNome FROM `Produto` as `p` INNER JOIN `Marca` as `m` ON `p`.`MarcaId` = `m`.`Id`;";
+
+        List<Produto> produtos = new List<Produto>();
+
+        using (var cmd = new MySqlCommand(sql))
+        {
+            using (MySqlDataReader reader = Banco.ExecutarComRetornoDeDados(cmd))
+            {
+                while (reader.Read())
+                {
+                    int id = reader.GetInt32("Id");
+                    string nome = ValidarCampo(reader["Nome"]);
+                    decimal preco = reader.GetDecimal("Preco");
+                    string categoria = ValidarCampo(reader["Categoria"]);
+                    bool fabricado = reader.GetBoolean("Fabricado");
+                    int marcaId = reader.GetInt32("MarcaId");
+                    string nomeMarca = ValidarCampo(reader["MarcaNome"]);
+                            
                     Produto produto = new Produto(nome, preco, categoria, fabricado, marcaId);
 
                     produtos.Add(produto);
