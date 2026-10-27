@@ -16,6 +16,12 @@ internal class ItemCompra
     private int _quantidade;
     private decimal _precoCobrado;
 
+    public int Id { get => _id; set => _id = value; }
+    public int CompraId { get => _compraId; set => _compraId = value; }
+    public int ProdutoId { get => _produtoId; set => _produtoId = value; }
+    public int Quantidade { get => _quantidade; set => _quantidade = value; }
+    public decimal PrecoCobrado { get => _precoCobrado; set => _precoCobrado = value; }
+
     // Construtor base para validação e criação de um novo item em memória
     public ItemCompra(int produtoId, int quantidade, decimal precoCobrado)
     {
@@ -23,9 +29,9 @@ internal class ItemCompra
         if(quantidade <= 0) throw new ArgumentOutOfRangeException("A quantidade deve ser maior que 0");
         if(precoCobrado <= 0) throw new ArgumentOutOfRangeException("O preço cobrado deve ser maior que 0");
         
-        this._produtoId = produtoId;
-        this._quantidade = quantidade;
-        this._precoCobrado = precoCobrado;
+        this.ProdutoId = produtoId;
+        this.Quantidade = quantidade;
+        this.PrecoCobrado = precoCobrado;
     }
 
     // Construtor completo (chamado ao ler da base de dados)
@@ -36,13 +42,13 @@ internal class ItemCompra
         if(compraId <= 0) throw new ArgumentOutOfRangeException("Id da compra é inválido");
 
 
-        this._id = id;
-        this._compraId = compraId;
+        this.Id = id;
+        this.CompraId = compraId;
     }
 
-    public decimal CalcularSubtotal()
+    public decimal CalcularSubTotal()
     {
-        return this._quantidade * this._precoCobrado;
+        return this.Quantidade * this.PrecoCobrado;
     }
 
     public int Inserir(ItemCompra item)
@@ -52,14 +58,12 @@ internal class ItemCompra
             // Configura o comando como storedProcedure
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("p_CompraID", item._compraId);
-            cmd.Parameters.AddWithValue("p_ProdutoID", item._produtoId);
-            cmd.Parameters.AddWithValue("p_Quantidade", item._quantidade);
-            cmd.Parameters.AddWithValue("p_PrecoCobrado", item._precoCobrado);
+            cmd.Parameters.AddWithValue("p_CompraID", item.CompraId);
+            cmd.Parameters.AddWithValue("p_ProdutoID", item.ProdutoId);
+            cmd.Parameters.AddWithValue("p_Quantidade", item.Quantidade);
+            cmd.Parameters.AddWithValue("p_PrecoCobrado", item.PrecoCobrado);
 
             return Banco.ExecutarComando(cmd);
         }
-
-
     }
 }
